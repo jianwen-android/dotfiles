@@ -5,7 +5,7 @@
 - [x] zshrc
 - [x] Youtube Enhancer
 - [x] Firefox
-- [x] [hyper/macos](Hyper)
+- [x] [hyper](hyper/macos)
 
 ## Windows
 
