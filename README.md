@@ -5,7 +5,7 @@
 - [x] zshrc
 - [x] Youtube Enhancer
 - [x] Firefox
-- [ ] Hyper
+- [x] [hyper/macos](Hyper)
 
 ## Windows
 
@@ -15,7 +15,7 @@
 
 ## Linux
 
-- [ ] zshrc
+- [x] zshrc
 - [x] Youtube Enhancer
 - [ ] Firefox
 - [ ] Hyper
