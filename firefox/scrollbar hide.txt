@@ -1,0 +1,1 @@
+scrollbar {-moz-appearance: none !important;display: none !important;}
