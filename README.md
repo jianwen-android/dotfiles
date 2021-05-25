@@ -7,7 +7,7 @@
 ## MacOS
 
 - [x] zshrc
-- [x] Youtube Enhancer
+- [x] [Youtube Enhancer](youtubeEnhancer/macos)
 - [x] Firefox
 - [x] [Hyper](hyper/macos)
 
@@ -20,7 +20,7 @@
 ## Linux
 
 - [x] zshrc
-- [x] Youtube Enhancer
+- [x] [Youtube Enhancer](youtubeEnhancer/linux)
 - [ ] Firefox
 - [ ] Hyper
 - [ ] sway
