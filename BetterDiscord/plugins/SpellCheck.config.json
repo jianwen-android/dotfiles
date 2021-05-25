@@ -1,0 +1,20 @@
+{
+	"amounts": {
+		"maxSimilarAmount": 6
+	},
+	"changelog": {
+		"currentversion": "1.5.3"
+	},
+	"choices": {
+		"dictionaryLanguage": "en",
+		"secondaryLanguage": "-"
+	},
+	"owndics": {
+		"en": [
+			"convined"
+		]
+	},
+	"settings": {
+		"downloadDictionary": false
+	}
+}

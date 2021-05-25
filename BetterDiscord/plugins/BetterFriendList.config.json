@@ -1,0 +1,14 @@
+{
+	"general": {
+		"addTotalAmount": true,
+		"addSortOptions": true,
+		"addSearchbar": true,
+		"addMutualGuild": true
+	},
+	"settings": {
+		"addTotalAmount": true,
+		"addSortOptions": true,
+		"addSearchbar": true,
+		"addMutualGuild": true
+	}
+}
