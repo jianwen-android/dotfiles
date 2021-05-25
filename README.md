@@ -1,11 +1,15 @@
 # Dotfiles
 
+## Universal
+
+- [ ] [Dark Reader](darkReader)
+
 ## MacOS
 
 - [x] zshrc
 - [x] Youtube Enhancer
 - [x] Firefox
-- [x] [hyper](hyper/macos)
+- [x] [Hyper](hyper/macos)
 
 ## Windows
 
