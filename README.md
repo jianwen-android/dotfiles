@@ -1,11 +1,15 @@
 # Dotfiles
 
+## Universal
+
+- [ ] [Dark Reader](darkReader)
+
 ## MacOS
 
 - [x] zshrc
-- [x] Youtube Enhancer
+- [x] [Youtube Enhancer](youtubeEnhancer/macos)
 - [x] Firefox
-- [ ] Hyper
+- [x] [Hyper](hyper/macos)
 
 ## Windows
 
@@ -15,8 +19,8 @@
 
 ## Linux
 
-- [ ] zshrc
-- [x] Youtube Enhancer
+- [x] zshrc
+- [x] [Youtube Enhancer](youtubeEnhancer/linux)
 - [ ] Firefox
 - [ ] Hyper
 - [ ] sway
