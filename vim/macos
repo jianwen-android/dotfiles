@@ -1,0 +1,3 @@
+:imap jj <Esc>
+set backspace=indent,eol,start
+

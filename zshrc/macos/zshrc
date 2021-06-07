@@ -131,6 +131,8 @@ alias gitlogout='echo -e "host=github.com\nprotocol=https\n" | git credential-os
 git config --unset-all --global user.name
 git config --unset-all --global user.email'
 
+alias pngtowebp="/usr/local/bin/dwebp -o"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 

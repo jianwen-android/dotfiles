@@ -1,13 +1,5 @@
 #!/bin/bash
 
-if [ "$(uname -s)" = "Darwin" ]; then
-    os="macos"
-    macos
-elif [ "$(uname -s)" = "Linux" ]; then
-    os="linux"
-    linux
-fi
-
 # Sync sway configs
 linux() {
     # Unique linux config files
@@ -27,6 +19,14 @@ macos() {
     cp -i "$HOME"/.hyper.js hyper/"$os"
     cp -i "$HOME"/.vimrc vim/"$os"
 }
+
+if [ "$(uname -s)" = "Darwin" ]; then
+    os="macos"
+    macos
+elif [ "$(uname -s)" = "Linux" ]; then
+    os="linux"
+    linux
+fi
 
 # Commit and sync to github :)
 git add .
