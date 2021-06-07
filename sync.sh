@@ -16,7 +16,7 @@ linux() {
 
 macos() {
     # Terminal setup
-    cp -i -R -u "$HOME"/.zshrc zshrc/"$os"/zshrc
+    cp -iRu "$HOME"/.zshrc zshrc/"$os"/zshrc
     cp -i -R -u "$HOME"/.hyper.js hyper/"$os"/hyper.jsh
     cp -i -R -u "$HOME"/.vimrc vim/"$os"/vimrc
     cp -i -R -u "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
