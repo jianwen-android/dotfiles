@@ -9,15 +9,17 @@ linux() {
 
     # Terminal setup
     cp -i "$HOME"/.zshrc zshrc/"$os"/zshrc
-    cp -i "$HOME"/.hyper.js hyper/"$os"
-    cp -i "$HOME"/.vimrc vim/"$os"
+    cp -i "$HOME"/.hyper.js hyper/"$os"/hyper.js
+    cp -i "$HOME"/.vimrc vim/"$os"/vimrc
+    cp -i "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
 }
 
 macos() {
     # Terminal setup
     cp -i "$HOME"/.zshrc zshrc/"$os"/zshrc
-    cp -i "$HOME"/.hyper.js hyper/"$os"
-    cp -i "$HOME"/.vimrc vim/"$os"
+    cp -i "$HOME"/.hyper.js hyper/"$os"/hyper.js
+    cp -i "$HOME"/.vimrc vim/"$os"/vimrc
+    cp -i "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
 }
 
 if [ "$(uname -s)" = "Darwin" ]; then
@@ -32,4 +34,4 @@ fi
 git add .
 git commit -m "$(date '+%T, %d %B %Y')"
 git push
-echo "Copied new files and synced!"
+echo \n"Copied new files and synced!"
