@@ -104,7 +104,7 @@
       "warning": 80,
       "critical": 90
     },
-    "max-length": "5",
+    // "max-length": "5",
     "tooltip": false
   },
 
@@ -122,20 +122,10 @@
     "format-icons": ["", "", ""]
   },
 
-  "backlight": {
-    "interval": 5,
-    "format": "{icon}",
-    "format-alt": "{percent}% {icon}",
-    "format-alt-click": "click-right",
-    "format-icons": ["🌕", "🌔", "🌓", "🌒", "🌑"],
-    "on-scroll-down": "brightnessctl -c backlight set +5%",
-    "on-scroll-up": "brightnessctl -c backlight set 5%-"
-  },
-
   "network": {
     //"interface": "wlan0", // (Optional) To force the use of this interface
-    "format-wifi": "直  connected",
-    "format-ethernet": "直 {ifname}: {ipaddr}",
+    "format-wifi": "﬉  connected",
+    "format-ethernet": "﬉  connected",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
     "interval": 60,
@@ -175,7 +165,7 @@
   "disk": {
     "interval": 30,
     "format": "{free}",
-    "path": "/run/media/bryan/",
+    "path": "/run/media/jianw/",
   },
 
   "custom/power": {

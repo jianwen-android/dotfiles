@@ -236,3 +236,7 @@ for_window [title="^Picture-in-Picture$"] floating enable, move position 1000 67
 #}
 
 include /etc/sway/config.d/*
+
+
+# mod tab should change workspace
+# vice versa mod shift tab
