@@ -58,15 +58,13 @@ input * xkb_numlock enable
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+space exec --no-startup-id ~/.config/rofi/bin/launcher_misc
+    bindsym $mod+space exec ~/.config/rofi/bin/launcher_misc
 
     # Powermenu
-    #bindsym $mod+Escape exec --no-startup-id ~/.config/rofi/bin/powermenu 
-    ## For now #TODO
-    bindsym $mod+Escape exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-
+    bindsym $mod+Escape exec ~/.config/rofi/bin/powermenu
+    
     # Screenshot
-    bindsym $mod+shift+s --no-startup-id ~/.config/rofi/bin/applet_screenshot
+    bindsym $mod+shift+s ~/.config/rofi/bin/applet_screenshot
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -128,6 +126,9 @@ input * xkb_numlock enable
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    bindsym $mod+Tab workspace next
+    bindsym $mod+shift+Tab workspace prev
 #
 # Layout stuff:
 #
@@ -211,13 +212,12 @@ bindsym $alt+Shift+Up sticky toggle
 exec {
     waybar
     rofi
-    thunderbird
     fcitx -d -r
-    discord
     jetbrains
     sway-session restore && sway-session save-loop
 }
-exec_always --no-startup-id /usr/bin/light-lockers
+exec_always /usr/bin/light-lockers
+exec_always "workspace 1: exec /usr/bin/firefox"
 
 for_window [title="^Picture-in-Picture$"] floating enable, move position 1000 675, sticky enable, border none
 
