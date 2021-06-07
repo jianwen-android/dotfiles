@@ -36,3 +36,10 @@ git commit -m "$(date '+%T, %d %B %Y')"
 git push
 echo ""
 echo "Copied new files and synced!"
+
+
+#TODO research and find out more about rsync
+# possible command rsync -azPu
+# in leiu of the lack of a interactive command
+# we can dry run
+# rsync -aunv

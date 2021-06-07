@@ -141,4 +141,3 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#80868b,bold,underline"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
