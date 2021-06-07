@@ -34,5 +34,5 @@ fi
 git add .
 git commit -m "$(date '+%T, %d %B %Y')"
 git push
-echo "\n"
+echo ""
 echo "Copied new files and synced!"
