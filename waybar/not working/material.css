@@ -1,0 +1,22 @@
+/*
+*
+* Base16 custom
+* Author: bryan
+*
+*/
+
+:enabled {
+  --dark: #464646;
+  --darkish: #474747;
+  --darker: #3a3a3a;
+  --dark-blue: #3b42;
+  --bright-blue: #6a85;
+  --greenish: #b8b8;
+  --cyan: #a4c3;
+  --blue: #434c;
+  --red: #cb70;
+  --orange: #d598;
+  --yellow: #dcbb;
+  --green: #9da9;
+  --purple: #8c94ae;
+}
