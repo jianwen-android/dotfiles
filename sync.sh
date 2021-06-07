@@ -3,23 +3,23 @@
 # Sync sway configs
 linux() {
     # Unique linux config files
-    cp -i -R -u "$HOME"/.config/sway/config sway/
-    cp -i -R -u "$HOME"/.config/waybar .
-    cp -i -R -u "$HOME"/.config/rofi .
+    cp -iRu "$HOME"/.config/sway/config sway/
+    cp -iRu "$HOME"/.config/waybar .
+    cp -iRu "$HOME"/.config/rofi .
 
     # Terminal setup
-    cp -i -R -u "$HOME"/.zshrc zshrc/"$os"/zshrc
-    cp -i -R -u "$HOME"/.hyper.js hyper/"$os"/hyper.js
-    cp -i -R -u "$HOME"/.vimrc vim/"$os"/vimrc
-    cp -i -R -u "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
+    cp -iRu "$HOME"/.zshrc zshrc/"$os"/zshrc
+    cp -iRu "$HOME"/.hyper.js hyper/"$os"/hyper.js
+    cp -iRu "$HOME"/.vimrc vim/"$os"/vimrc
+    cp -iRu "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
 }
 
 macos() {
     # Terminal setup
     cp -iRu "$HOME"/.zshrc zshrc/"$os"/zshrc
-    cp -i -R -u "$HOME"/.hyper.js hyper/"$os"/hyper.jsh
-    cp -i -R -u "$HOME"/.vimrc vim/"$os"/vimrc
-    cp -i -R -u "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
+    cp -iRu "$HOME"/.hyper.js hyper/"$os"/hyper.jsh
+    cp -iRu "$HOME"/.vimrc vim/"$os"/vimrc
+    cp -iRu "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
 }
 
 if [ "$(uname -s)" = "Darwin" ]; then
