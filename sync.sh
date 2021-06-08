@@ -1,25 +1,51 @@
 #!/bin/bash
 
 # Sync sway configs
+
+prompt() {
+    read -p "We good boss? " -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ ! $REPLY =~ ^[Yy]$ ]]
+    then
+        exit 1
+    fi
+}
+
 linux() {
+    #Test
+    rsync -azunv "$HOME"/.config/sway "$HOME"/.config/waybar "$HOME"/.config/rofi .
+
+    rsync -azunv "$HOME"/.zshrc zshrc/"$os"/zshrc
+    rsync -azunv "$HOME"/.hyper.js hyper/"$os"/hyper.js
+    rsync -azunv "$HOME"/.vimrc vim/"$os"/vimrc
+    rsync -azunv "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
+
+    prompt
+
     # Unique linux config files
-    cp -iRu "$HOME"/.config/sway/config sway/
-    cp -iRu "$HOME"/.config/waybar .
-    cp -iRu "$HOME"/.config/rofi .
+    rsync -azPu "$HOME"/.config/sway "$HOME"/.config/waybar "$HOME"/.config/rofi .
 
     # Terminal setup
-    cp -iRu "$HOME"/.zshrc zshrc/"$os"/zshrc
-    cp -iRu "$HOME"/.hyper.js hyper/"$os"/hyper.js
-    cp -iRu "$HOME"/.vimrc vim/"$os"/vimrc
-    cp -iRu "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
+    rsync -azPu "$HOME"/.zshrc zshrc/"$os"/zshrc
+    rsync -azPu "$HOME"/.hyper.js hyper/"$os"/hyper.js
+    rsync -azPu "$HOME"/.vimrc vim/"$os"/vimrc
+    rsync -azPu "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
 }
 
 macos() {
+    # Test
+    rsync -azunv "$HOME"/.zshrc zshrc/"$os"/zshrc
+    rsync -azunv "$HOME"/.hyper.js hyper/"$os"/hyper.jsh
+    rsync -azunv "$HOME"/.vimrc vim/"$os"/vimrc
+    rsync -azunv "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
+
+    prompt
+
     # Terminal setup
-    cp -iRu "$HOME"/.zshrc zshrc/"$os"/zshrc
-    cp -iRu "$HOME"/.hyper.js hyper/"$os"/hyper.jsh
-    cp -iRu "$HOME"/.vimrc vim/"$os"/vimrc
-    cp -iRu "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
+    rsync -azPu "$HOME"/.zshrc zshrc/"$os"/zshrc
+    rsync -azPu "$HOME"/.hyper.js hyper/"$os"/hyper.jsh
+    rsync -azPu "$HOME"/.vimrc vim/"$os"/vimrc
+    rsync -azPu "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
 }
 
 if [ "$(uname -s)" = "Darwin" ]; then
@@ -42,4 +68,4 @@ echo "Copied new files and synced!"
 # possible command rsync -azPu
 # in leiu of the lack of a interactive command
 # we can dry run
-# rsync -aunv
+# rsync -azunv
