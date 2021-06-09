@@ -3,6 +3,23 @@
 # Sync sway configs
 
 prompt() {
+    echo "Compare files?"
+    read -p "[N]one [A]ll [D]ffs" -n 1 -r
+    echo    # (optional) move to a new line
+    if [[ $REPLY =~ ^[Nn]$ ]]; then
+        exit 1
+    elif [[ $REPLY =~ ^[Aa]$ ]]; then
+        read -p "Which one?" -n 1 -r
+        if [[ $REPLY =~ ^hyper|js ]]; then
+            diff -y $HOME/.hyper.js ./hyper/$os/hyper.js
+        
+        elif [[ $REPLY =~ ^p10k|zsh ]]; then
+            diff -y $HOME/.p10k.zsh ./hyper/$os/p10k.zsh
+
+
+    fi
+
+    echo ""
     read -p "We good boss? " -n 1 -r
     echo    # (optional) move to a new line
     if [[ ! $REPLY =~ ^[Yy]$ ]]
@@ -19,6 +36,8 @@ linux() {
     rsync -azunv "$HOME"/.hyper.js hyper/"$os"/hyper.js
     rsync -azunv "$HOME"/.vimrc vim/"$os"/vimrc
     rsync -azunv "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
+
+    { echo "Hello" ;echo "Yooo" ;} && { echo "Hello" ;echo "Yooo" ;}>checksum.txt
 
     prompt
 
