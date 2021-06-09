@@ -45,6 +45,7 @@ while :; do
         while :; do 
         read -p "Enter index of file (-1 to exit): " -r
         file=changedFiles["$REPLY"]
+        echo "$file"
             case $file in
                 "hyper") ydiff "$HOME"/.hyper.js ./hyper/"$os"/hyper.js
                 ;;
@@ -69,39 +70,3 @@ while :; do
         break
     fi
 done
-
-# Terminal setup
-rsync -azPu "$HOME"/.zshrc zshrc/"$os"/zshrc
-rsync -azPu "$HOME"/.hyper.js hyper/"$os"/hyper.js
-rsync -azPu "$HOME"/.vimrc vim/"$os"/vimrc
-rsync -azPu "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
-# bro ok
-
-if [[ "$os" = linux ]]; then
-    rsync -azPu "$HOME"/.config/sway "$HOME"/.config/waybar "$HOME"/.config/rofi .
-fi
-
-# Insert copying code here
-
-git add .
-git commit -m "$(date '+%T, %d %B %Y')"
-git push
-echo ""
-echo "Copied new files and synced!"
-
-# Heres how it goes
-# COMPARE ALL FILES BY YDIFF
-# IF OS IS LINUX
-#     DO YOUR EXTRA STEPS
-#
-# COUNT NUMBER OF DIFFS + WHICH ONES ARE DIFFS
-#     NO DIFFS: EXIT 1
-# PRINT FILE + INDEX
-# ASK IF I SHOULD SHOW WHAT ARE DIFFS?
-#     YES: WHICH ONE BABE?
-#         TAKE INDEX, SLAP INTO ARRAY
-#         RETURNS YDIFF OUTPUT
-#         LOOP
-#     NO: PASS
-# COPY
-# EXIT 1
