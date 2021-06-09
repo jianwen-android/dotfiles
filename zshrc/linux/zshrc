@@ -111,13 +111,27 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias refreshfont="fc-cache -f -v"
+if [[ "$ENABLE_CORRECTION" == "true" ]]; then #temp fix for zsh stupid autocorrect
+  alias ebuild='nocorrect ebuild'
+  alias gist='nocorrect gist'
+  alias heroku='nocorrect heroku'
+  alias hpodder='nocorrect hpodder'
+  alias code='nocorrect code'
+  alias mysql='nocorrect mysql'
+fi
+alias pngtowebp="/usr/local/bin/dwebp -o"
 alias zshconfig="code ~/.zshrc"
+
+alias refreshfont="fc-cache -f -v"
 alias paclock="sudo rm -rf /var/lib/pacman/db.lck"
+
 alias remove="rm -rf"
+
+alias install="yay -S"
 alias yeet="yay -R"
+
 alias settings="./Sway-Settings/build/src/sway-settings"
-alias sway-session="$HOME/sway-session/sway-session"
+alias sway-session="$HOME/.sway-session/sway-session"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
