@@ -4,20 +4,40 @@
 
 prompt() {
     echo "Compare files?"
-    read -p "[N]one [A]ll [D]ffs" -n 1 -r
+    read -p "[Y]es [N]o" -n 1 -r
     echo    # (optional) move to a new line
-    if [[ $REPLY =~ ^[Nn]$ ]]; then
-        exit 1
-    elif [[ $REPLY =~ ^[Aa]$ ]]; then
-        read -p "Which one?" -n 1 -r
-        if [[ $REPLY =~ ^hyper|js ]]; then
-            diff -y $HOME/.hyper.js ./hyper/$os/hyper.js
-        
-        elif [[ $REPLY =~ ^p10k|zsh ]]; then
-            diff -y $HOME/.p10k.zsh ./hyper/$os/p10k.zsh
+    loop=0
+    while $loop = 0; do
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            loop=1
+            exit 1
+        elif [[ $REPLY =~ ^[Nn]$ ]]; then
+            read -p "Which one?" -n 1 -r
+            # diff -y file1 file2 | cat -n | grep -v -e '($'  
+            if [[ "$os" = "macos" ]]; then
+                case $REPLY in
+                    "hyper") ydiff -s -c always -w 0 "$HOME"/.hyper.js ./hyper/"$os"/hyper.js
+                    ;;
+                    "zshrc") ydiff -s -c always -w 0 "$HOME"/.zshrc ./zshrc/"$os"/zshrc
+                    ;;
+                    "p10k") ydiff -s -c always -w 0 "$HOME"/.p10k.zsh ./hyper/"$os"/p10k.zsh
+                    ;;
+                    "vimrc") ydiff -s -c always -w 0 "$HOME"/.vimrc ./vimrc/"$os"/vimrc
+                    ;;
+                esac
+            elif [[ "$os" = "linux" ]]; then
 
 
-    fi
+            fi 
+
+        elif [[ $REPLY =~ ^[Dd]$ ]]; then
+            read -p "Which one?" -n 1 -r
+
+            if [[ $REPLY =~ ^hyper|js ]]; then
+
+            # sdiff -l file1 file2 | cat -n | grep -v -e '($'  
+        fi
+    done
 
     echo ""
     read -p "We good boss? " -n 1 -r
