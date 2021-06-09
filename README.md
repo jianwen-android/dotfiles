@@ -9,13 +9,13 @@
 ## MacOS
 
 - [x] [zshrc](zshrc/macos)
-- [ ] [p10k](p10k/macos)
+- [x] [p10k](p10k/macos)
 - [x] [Firefox](firefox/macos)
 - [x] [Hyper](hyper/macos)
 
 ## Windows
 
-- [ ] Youtube Enhancer
+- [x] Youtube Enhancer
 - [x] [Firefox](firefox/windows)
 - [ ] Theme (?)
 
@@ -26,6 +26,6 @@
 - [x] [Firefox](firefox/linux)
 - [x] [Hyper](hyper/linux)
 - [x] [sway](sway)
-- [ ] [waybar](waybar)
-- [ ] [rofi](rofi)
+- [x] [waybar](waybar)
+- [x] [rofi](rofi)
 - [ ] GTK theme
