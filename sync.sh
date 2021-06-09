@@ -35,7 +35,7 @@ linux() {
 macos() {
     # Test
     rsync -azunv "$HOME"/.zshrc zshrc/"$os"/zshrc
-    rsync -azunv "$HOME"/.hyper.js hyper/"$os"/hyper.jsh
+    rsync -azunv "$HOME"/.hyper.js hyper/"$os"/hyper.js
     rsync -azunv "$HOME"/.vimrc vim/"$os"/vimrc
     rsync -azunv "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
 
@@ -43,7 +43,7 @@ macos() {
 
     # Terminal setup
     rsync -azPu "$HOME"/.zshrc zshrc/"$os"/zshrc
-    rsync -azPu "$HOME"/.hyper.js hyper/"$os"/hyper.jsh
+    rsync -azPu "$HOME"/.hyper.js hyper/"$os"/hyper.js
     rsync -azPu "$HOME"/.vimrc vim/"$os"/vimrc
     rsync -azPu "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
 }
