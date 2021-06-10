@@ -118,14 +118,14 @@ if [[ "$ENABLE_CORRECTION" == "true" ]]; then #temp fix for zsh stupid autocorre
   alias hpodder='nocorrect hpodder'
   alias code='nocorrect code'
   alias mysql='nocorrect mysql'
+  alias ydiff="nocorrect ydiff"
 fi
 alias pngtowebp="/usr/local/bin/dwebp -o"
 alias zshconfig="code ~/.zshrc"
+alias remove="rm -rf"
 
 alias refreshfont="fc-cache -f -v"
 alias paclock="sudo rm -rf /var/lib/pacman/db.lck"
-
-alias remove="rm -rf"
 
 alias install="yay -S"
 alias yeet="yay -R"

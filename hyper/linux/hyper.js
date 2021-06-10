@@ -56,7 +56,9 @@ module.exports = {
 
     // terminal background color
     // opacity is only supported on macOS
+    /*
     backgroundColor: "rgba(40,44,52,1)",
+    */
 
     // terminal selection color
     selectionColor: "rgba(204,120,123,0.5)",
@@ -159,7 +161,8 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: [
+  plugins: [],
+  /*
     "hyper-quit",
     "hyper-pane",
     "hyper-firefox-devtools",
@@ -168,8 +171,7 @@ module.exports = {
     "hyper-tabs-enhanced",
     "hyper-tab-icons",
     "hyper-highlight-pane",
-  ],
-
+    */
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
   // to load it and avoid it being `npm install`ed
