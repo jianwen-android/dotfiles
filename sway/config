@@ -1,5 +1,5 @@
 # Read `man 5 sway` for a complete reference.
-
+#test
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -214,12 +214,20 @@ exec {
     rofi
     fcitx -d -r
     jetbrains
-    sway-session restore && sway-session save-loop
+    sway-session restore
+    sway-session save-loop 60
+    onedrive --synchronize --skip-size 1000
 }
 exec_always /usr/bin/light-lockers
 exec_always "workspace 1: exec /usr/bin/firefox"
 
-for_window [title="^Picture-in-Picture$"] floating enable, move position 1000 675, sticky enable, border none
+for_window [title="^Picture-in-Picture$"] floating enable, move position 1000 675, sticky enable, border none 
+#TODO find the good position
+
+#for_window [title=~ ((A|a)ndroid)] floating enable, border none
+# TODO regex
+
+for_window [title="SM-N950F"] floating enable, border pixel
 
 #bar {
 #    position top

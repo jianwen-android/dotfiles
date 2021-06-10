@@ -41,29 +41,33 @@ fi
 while :; do
     read -p "Show diffs? [Y]es [N]o: " -r
     echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
+    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
         while :; do 
-        read -p "Enter index of file (-1 to exit): " -r
-        file=changedFiles["$REPLY"]
-            case $file in
-                "hyper") ydiff "$HOME"/.hyper.js ./hyper/"$os"/hyper.js
-                ;;
-                "zshrc") ydiff "$HOME"/.zshrc ./zshrc/"$os"/zshrc
-                ;;
-                "p10k") ydiff "$HOME"/.p10k.zsh ./hyper/"$os"/p10k.zsh
-                ;;
-                "vimrc") ydiff "$HOME"/.vimrc ./vimrc/"$os"/vimrc
-                ;;
-                "sway") ydiff "$HOME"/.config/sway ./sway
-                ;;
-                "waybar") ydiff "$HOME"/.config/waybar ./waybar
-                ;;
-                "rofi") ydiff "$HOME"/.config/rofi ./rofi
-                ;;
-                "-1") break
-                ;;
-                *) echo "Invalid input (0-...)"
-            esac
+            read -p "Enter index of file (-1 to exit): " -r
+            if [[ "$REPLY" = -1 ]]; then
+                break
+            else
+                file="${changedFiles["$REPLY"]}"
+                echo "$file"
+                    case $file in
+                        "hyper") ydiff "$HOME"/.hyper.js ./hyper/"$os"/hyper.js
+                        ;;
+                        "zshrc") ydiff "$HOME"/.zshrc ./zshrc/"$os"/zshrc
+                        ;;
+                        "p10k") ydiff "$HOME"/.p10k.zsh ./hyper/"$os"/p10k.zsh
+                        ;;
+                        "vimrc") ydiff "$HOME"/.vimrc ./vimrc/"$os"/vimrc
+                        ;;
+                        "sway") ydiff "$HOME"/.config/sway ./sway
+                        ;;
+                        "waybar") ydiff "$HOME"/.config/waybar ./waybar
+                        ;;
+                        "rofi") ydiff "$HOME"/.config/rofi ./rofi
+                        ;;
+                        *) echo "Invalid input (0-...)"
+                    esac
+                
+            fi
         done
     elif [[ $REPLY =~ ^[Nn]$ ]]; then
         break

@@ -8,7 +8,17 @@
 
   "modules-left": ["wlr/taskbar", "custom/media"],
   "modules-center": ["sway/workspaces",],
-  "modules-right": ["cpu", "pulseaudio", "network", "custom/pacman", "custom/recorder", "tray", "clock", "custom/power"],
+  "modules-right": ["memory",
+		                "custom/left-arrow-light",
+                    "custom/left-arrow-dark",
+                    "cpu",
+                    "pulseaudio", 
+                    "network", 
+                    "custom/pacman", 
+                    "custom/recorder", 
+                    "tray", 
+                    "clock", 
+                    "custom/power"],
 
   // Modules configuration
 
@@ -45,12 +55,6 @@
     "icon-size": 15
   },
 
-  "sway/window": {
-    "format": "{}",
-    "all-outputs": true,
-    "max-length": 70,
-  },
-
   "custom/media": {
     "format": "{icon}{}",
     "return-type": "json",
@@ -62,7 +66,8 @@
     "exec": "playerctl metadata --format '{\"text\": \"{{title}}\", \"tooltip\": \"{{playerName}} : {{title}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
     "on-click": "playerctl play-pause",
     "on-scroll-down": "playerctl next",
-    "on-scroll-up": "playerctl previous"
+    "on-scroll-up": "playerctl previous",
+    "smooth-scrolling-threshold": 5
   },
 
   "custom/recorder": {
@@ -80,14 +85,6 @@
     "icon-size": 15
   },
 
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": ""
-    }
-  },
-
   "clock": {
     "timezone": "Asia/Singapore",
     "format": "{:%I:%M %p}",
@@ -95,21 +92,6 @@
     "on-click": "~/.local/bin/eww close hub || ~/.local/bin/eww open hub",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     // "format-alt": "{:%Y-%m-%d}"
-  },
-
-  "cpu": {
-    "format": "{usage}%",
-    "states": {
-      "mild": 50,
-      "warning": 80,
-      "critical": 90
-    },
-    // "max-length": "5",
-    "tooltip": false
-  },
-
-  "memory": {
-    "format": "{}  "
   },
 
   "temperature": {
@@ -186,9 +168,24 @@
     "on-click-right": "minimize",
     "on-click-middle": "close"
   },
+  
+	"custom/left-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+  "memory": {
+		"interval": 5,
+		"format": "Mem {}%"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%"
+    // "on-click": exec hyper htop
+	},
+  
 
-  "tray": {
-    "icon-size": 15,
-    "spacing": 10
-  }
 }

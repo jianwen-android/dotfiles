@@ -44,7 +44,7 @@ while :; do
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         while :; do 
         read -p "Enter index of file (-1 to exit): " -r
-        file=changedFiles["$REPLY"]
+        file="${changedFiles["$REPLY"]}"
         echo "$file"
             case $file in
                 "hyper") ydiff "$HOME"/.hyper.js ./hyper/"$os"/hyper.js
