@@ -118,12 +118,13 @@ if [[ "$ENABLE_CORRECTION" == "true" ]]; then #temp fix for zsh stupid autocorre
   alias hpodder='nocorrect hpodder'
   alias code='nocorrect code'
   alias mysql='nocorrect mysql'
+  alias ydiff="nocorrect ydiff"
 fi
-
 alias pngtowebp="/usr/local/bin/dwebp -o"
 alias zshconfig="code ~/.zshrc"
+alias remove="rm -rf"
 
-#Android Emulator
+#Le code
 alias emulator="~/Library/Android/sdk/tools/emulator"
 alias adbremove="adb shell pm uninstall --user 0"
 alias xcode="open -a Xcode"
