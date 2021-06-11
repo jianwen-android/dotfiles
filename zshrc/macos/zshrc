@@ -122,7 +122,7 @@ if [[ "$ENABLE_CORRECTION" == "true" ]]; then #temp fix for zsh stupid autocorre
 fi
 alias pngtowebp="/usr/local/bin/dwebp -o"
 alias zshconfig="code ~/.zshrc"
-alias remove="rm -rf"
+alias remove="rm -r"
 
 #Le code
 alias emulator="~/Library/Android/sdk/tools/emulator"
@@ -142,3 +142,5 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#80868b,bold,underline"
 export PATH="/usr/local/sbin:$PATH"
+
+#TEST
