@@ -48,7 +48,6 @@ while :; do
                 break
             else
                 file="${changedFiles["$REPLY"]}"
-                echo "$file"
                     case $file in
                         "hyper") ydiff "$HOME"/.hyper.js ./hyper/"$os"/hyper.js
                         ;;
