@@ -15,16 +15,16 @@
 # full_circle     full_square     full_rounded     full_alt
 # row_circle      row_square      row_rounded      row_alt
 
-theme="card_rounded"
+theme="full_alt"
 dir="$HOME/.config/rofi/powermenu"
 
 # random colors
-styles=($(ls -p --hide="colors.rasi" $dir/styles))
+styles=($(ls -p --hide="colors.rasi" "$dir"/styles))
 color=nightly.rasi
 #color="${styles[$(( $RANDOM % 8 ))]}"
 
 # comment this line to disable random colors
-sed -i -e "s/@import .*/@import \"$color\"/g" $dir/styles/colors.rasi
+# sed -i -e "s/@import .*/@import \"$color\"/g" "$dir"/styles/colors.rasi
 
 # comment these lines to disable random style
 #themes=($(ls -p --hide="powermenu.sh" --hide="styles" --hide="confirm.rasi" --hide="message.rasi" $dir))
@@ -37,7 +37,6 @@ rofi_command="rofi -theme $dir/$theme"
 # Options
 shutdown=""
 reboot=""
-lock=""
 suspend=""
 logout=""
 
@@ -47,7 +46,7 @@ confirm_exit() {
 		-i\
 		-no-fixed-num-lines\
 		-p "Are You Sure? : "\
-		-theme $dir/confirm.rasi
+		-theme "$dir"/confirm.rasi
 }
 
 # Message
@@ -56,11 +55,11 @@ msg() {
 }
 
 # Variable passed to rofi
-options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
+options="$shutdown\n$reboot\n$suspend\n$logout"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Uptime: $uptime" -dmenu -selected-row 2)"
 case $chosen in
-    $shutdown)
+    "$shutdown")
 		ans=$(confirm_exit &)
 		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
 			systemctl poweroff
@@ -70,7 +69,7 @@ case $chosen in
 			msg
         fi
         ;;
-    $reboot)
+    "$reboot")
 		ans=$(confirm_exit &)
 		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
 			systemctl reboot
@@ -79,34 +78,18 @@ case $chosen in
         else
 			msg
         fi
-        ;;
-    $lock)
-		#if [[ -f /usr/bin/i3lock ]]; then
-		#	i3lock
-		#elif [[ -f /usr/bin/betterlockscreen ]]; then
-		#	betterlockscreen -l
-		#fi
-		light-locker-command -l
-        ;;
-    $suspend)
-		ans=$(confirm_exit &)
-		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
-			mpc -q pause
-			systemctl hybrid-sleep && sway-session save
-		#	mpc -q pause
-		#	amixer set Master mute
-		#	systemctl suspend
-		elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
-			exit 0
-        else
-			msg
-        fi
-        ;;
-    $logout)
+		;;
+    "$suspend")
+		mpc -q pause
+		sway-session save
+		systemctl hybrid-sleep
+		;;
+    "$logout")
 		ans=$(confirm_exit &)
 		if [[ $ans == "yes" || $ans == "YES" || $ans == "y" || $ans == "Y" ]]; then
 			if [ "$DESKTOP_SESSION" == "sway" ]; then
-				sway-session save && swaymsg exit
+				sway-session save 
+				swaymsg exit
 			fi
 		elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
 			exit 0

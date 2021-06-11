@@ -186,6 +186,12 @@
 		"format": "CPU {usage:2}%"
     // "on-click": exec hyper htop
 	},
-  
+  "custom/fcitx": {
+    "format": "<b>  </b>{}",
+    "interval": 30,
+    "signal": 1,
+    "exec": "fcitx -d -r"
+  },
+}
 
 }

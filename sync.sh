@@ -48,19 +48,19 @@ if [[ "$REPLY" =~ ^[Yy]$ ]]; then
         else
             file="${changedFiles["$REPLY"]}"
                 case $file in
-                    "hyper") ydiff "$HOME"/.hyper.js ./hyper/"$os"/hyper.js
+                    "hyper") ydiff ./hyper/"$os"/hyper.js "$HOME"/.hyper.js
                     ;;
-                    "zshrc") ydiff "$HOME"/.zshrc ./zshrc/"$os"/zshrc
+                    "zshrc") ydiff ./zshrc/"$os"/zshrc "$HOME"/.zshrc
                     ;;
-                    "p10k") ydiff "$HOME"/.p10k.zsh ./hyper/"$os"/p10k.zsh
+                    "p10k") ydiff ./hyper/"$os"/p10k.zsh "$HOME"/.p10k.zsh
                     ;;
-                    "vimrc") ydiff "$HOME"/.vimrc ./vimrc/"$os"/vimrc
+                    "vimrc") ydiff ./vimrc/"$os"/vimrc "$HOME"/.vimrc
                     ;;
-                    "sway") ydiff "$HOME"/.config/sway ./sway
+                    "sway") ydiff ./sway "$HOME"/.config/sway
                     ;;
-                    "waybar") ydiff "$HOME"/.config/waybar ./waybar
+                    "waybar") ydiff ./waybar "$HOME"/.config/waybar
                     ;;
-                    "rofi") ydiff "$HOME"/.config/rofi ./rofi
+                    "rofi") ydiff ./rofi "$HOME"/.config/rofi
                     ;;
                     *) echo "Invalid input (0-...)"
                 esac
