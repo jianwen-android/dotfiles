@@ -38,40 +38,36 @@ if [[ ! ${#changedFiles[@]} = 0 ]]; then
     echo
 fi
 
-while :; do
-    read -p "Show diffs? [Y]es [N]o: " -r
-    echo
-    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-        while :; do 
-            read -p "Enter index of file (-1 to exit): " -r
-            if [[ "$REPLY" = -1 ]]; then
-                break
-            else
-                file="${changedFiles["$REPLY"]}"
-                    case $file in
-                        "hyper") ydiff "$HOME"/.hyper.js ./hyper/"$os"/hyper.js
-                        ;;
-                        "zshrc") ydiff "$HOME"/.zshrc ./zshrc/"$os"/zshrc
-                        ;;
-                        "p10k") ydiff "$HOME"/.p10k.zsh ./hyper/"$os"/p10k.zsh
-                        ;;
-                        "vimrc") ydiff "$HOME"/.vimrc ./vimrc/"$os"/vimrc
-                        ;;
-                        "sway") ydiff "$HOME"/.config/sway ./sway
-                        ;;
-                        "waybar") ydiff "$HOME"/.config/waybar ./waybar
-                        ;;
-                        "rofi") ydiff "$HOME"/.config/rofi ./rofi
-                        ;;
-                        *) echo "Invalid input (0-...)"
-                    esac
-                
-            fi
-        done
-    elif [[ $REPLY =~ ^[Nn]$ ]]; then
-        break
-    fi
-done
+read -p "Show diffs? [Y]es [N]o: " -r
+echo
+if [[ "$REPLY" =~ ^[Yy]$ ]]; then
+    while :; do 
+        read -p "Enter index of file (-1 to exit): " -r
+        if [[ "$REPLY" = -1 ]]; then
+            break
+        else
+            file="${changedFiles["$REPLY"]}"
+                case $file in
+                    "hyper") ydiff "$HOME"/.hyper.js ./hyper/"$os"/hyper.js
+                    ;;
+                    "zshrc") ydiff "$HOME"/.zshrc ./zshrc/"$os"/zshrc
+                    ;;
+                    "p10k") ydiff "$HOME"/.p10k.zsh ./hyper/"$os"/p10k.zsh
+                    ;;
+                    "vimrc") ydiff "$HOME"/.vimrc ./vimrc/"$os"/vimrc
+                    ;;
+                    "sway") ydiff "$HOME"/.config/sway ./sway
+                    ;;
+                    "waybar") ydiff "$HOME"/.config/waybar ./waybar
+                    ;;
+                    "rofi") ydiff "$HOME"/.config/rofi ./rofi
+                    ;;
+                    *) echo "Invalid input (0-...)"
+                esac
+            
+        fi
+    done
+fi
 
 # Terminal setup
 rsync -azPu "$HOME"/.zshrc zshrc/"$os"/zshrc

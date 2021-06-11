@@ -4,7 +4,7 @@
 
 - [ ] [Dark Reader](darkReader)
 - [x] [Better Discord](betterDiscord)
-- [ ] [Youtube Enhancer](youtubeEnhancer)
+- [x] [Youtube Enhancer](youtubeEnhancer)
 
 ## MacOS
 
@@ -15,9 +15,8 @@
 
 ## Windows
 
-- [x] Youtube Enhancer
 - [x] [Firefox](firefox/windows)
-- [ ] Theme (?)
+- [x] [Theme](theme)
 
 ## Linux
 
