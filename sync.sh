@@ -41,9 +41,10 @@ if [[ ! ${#changedFiles[@]} = 0 ]]; then
     echo
 fi
 
-read -p "Show diffs? [Y]es [N]o: " -r
-echo
+
 while :; do
+    read -p "Show diffs? [Y]es [N]o: " -r
+    echo
     if [[ "$REPLY" =~ ^[Yy]$ ]]; then
         while :; do 
             read -p "Enter index of file (-1 to exit): " -r
@@ -76,12 +77,14 @@ while :; do
         break
     else
         echo "Invalid option"
+        echo
     fi
 done
 
 # Terminal setup
+echo
 echo "Files to exclude?"
-read -p -r "[N]one [0-...]: "
+read -p "[N]one [0-...]: " -r
 echo
 for number in $REPLY
 do
