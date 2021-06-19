@@ -56,7 +56,7 @@ module.exports = {
 
     // terminal background color
     // opacity is only supported on macOS
-    
+
     //backgroundColor: "rgba(40,44,52,1)",
 
     // terminal selection color
@@ -162,7 +162,6 @@ module.exports = {
   //   `project#1.0.1`
   plugins: ["hyper-monokai-deluxe"],
   /*
-    "hyper-quit",
     "hyper-pane",
     "hyper-firefox-devtools",
     "verminal",

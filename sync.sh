@@ -1,6 +1,9 @@
 #!/bin/bash
 
+# shellcheck source=test.sh
+source test.sh
 declare -a changedFiles
+declare -a noSync
 
 #OS check
 if [ "$(uname -s)" = "Darwin" ]; then
@@ -70,6 +73,17 @@ if [[ "$REPLY" =~ ^[Yy]$ ]]; then
 fi
 
 # Terminal setup
+echo "Files to exclude?"
+read -p -r "[N]one [0-...]: "
+echo
+for number in $REPLY
+do
+    noSync+=("${changedFiles["$number"]}")
+done
+
+# shellcheck source=test.sh
+subtractArray
+
 rsync -azPu "$HOME"/.zshrc zshrc/"$os"/zshrc
 rsync -azPu "$HOME"/.hyper.js hyper/"$os"/hyper.js
 rsync -azPu "$HOME"/.vimrc vim/"$os"/vimrc

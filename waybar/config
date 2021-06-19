@@ -8,17 +8,26 @@
 
   "modules-left": ["wlr/taskbar", "custom/media"],
   "modules-center": ["sway/workspaces",],
-  "modules-right": ["memory",
-		                "custom/left-arrow-light",
-                    "custom/left-arrow-dark",
-                    "cpu",
-                    "pulseaudio", 
-                    "network", 
-                    "custom/pacman", 
-                    "custom/recorder", 
-                    "tray", 
-                    "clock", 
-                    "custom/power"],
+  "modules-right": [
+    "temperature",
+    "custom/seperator",
+    "memory",
+    "custom/seperator",
+    "cpu",
+    "custom/seperator",
+    "pulseaudio", 
+    "custom/seperator",
+    "network", 
+    "custom/seperator",
+    "custom/pacman", 
+    "custom/seperator",
+    "custom/recorder", 
+    "custom/seperator",
+    "tray", 
+    "custom/seperator",
+    "clock", 
+    "custom/seperator",
+    "custom/power"],
 
   // Modules configuration
 
@@ -98,20 +107,19 @@
     "thermal-zone": 2,
     "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
     "critical-threshold": 80,
-    "format-critical": "{temperatureC}°C {icon}",
-    "format": "{temperatureC}  {icon}",
-    "interval": 60,
+    "format-critical": "{temperatureC}° {icon}",
+    "format": "{temperatureC}° {icon}",
+    "interval": 1,
     "format-icons": ["", "", ""]
   },
 
   "network": {
     //"interface": "wlan0", // (Optional) To force the use of this interface
-    "format-wifi": "﬉  connected",
-    "format-ethernet": "﬉  connected",
+    "format-ethernet": "﬉ connected (LAN)",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
     "interval": 60,
-    "on-click-middle": "exec hyper nmtui"
+    "on-click": "exec nm-connection-editor"
   },
 
   "pulseaudio": {
@@ -138,9 +146,9 @@
     "format": "{}  ",
     "interval": 3600, // every hour
     // "restart-interval": 3600,
-    "exec": "checkupdates | wc -l", // # of updates
+    "exec": "(checkupdates && yay -Qua) | wc -l", // # of updates
     "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "foot yay; pkill -SIGRTMIN+8 waybar", // update system
+    "on-click": "exec gnome-terminal -- yay -Syu && pkill waybar; waybar", // update system
     "signal": 8,
   },
 
@@ -168,30 +176,27 @@
     "on-click-right": "minimize",
     "on-click-middle": "close"
   },
-  
-	"custom/left-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
+
+  "custom/seperator": {
+    "format": " | ",
+    "tooltip": false
+  },
+
   "memory": {
 		"interval": 5,
 		"format": "Mem {}%"
 	},
+
 	"cpu": {
 		"interval": 5,
-		"format": "CPU {usage:2}%"
-    // "on-click": exec hyper htop
+		"format": "CPU {usage:2}%",
+    "on-click": "exec gnome-terminal -- htop"
 	},
+
   "custom/fcitx": {
     "format": "<b>  </b>{}",
     "interval": 30,
     "signal": 1,
     "exec": "fcitx -d -r"
   },
-}
-
 }

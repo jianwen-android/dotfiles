@@ -60,4 +60,3 @@ case $chosen in
         ;;
 esac
 
-#TODO might be pog
