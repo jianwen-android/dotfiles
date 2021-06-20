@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # shellcheck source=test.sh
-source test.sh
+# source test.sh
 declare -a changedFiles
-declare -a noSync
+# declare -a noSync
 
 #OS check
 if [ "$(uname -s)" = "Darwin" ]; then
@@ -81,6 +81,7 @@ while :; do
     fi
 done
 
+' :
 # Terminal setup
 echo
 echo "Files to exclude?"
@@ -93,6 +94,8 @@ done
 
 # shellcheck source=test.sh
 subtractArray
+
+'
 
 rsync -azPu "$HOME"/.zshrc zshrc/"$os"/zshrc
 rsync -azPu "$HOME"/.hyper.js hyper/"$os"/hyper.js
