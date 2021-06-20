@@ -81,7 +81,7 @@ while :; do
     fi
 done
 
-' :
+: '
 # Terminal setup
 echo
 echo "Files to exclude?"
@@ -99,7 +99,7 @@ subtractArray
 
 rsync -azPu "$HOME"/.zshrc zshrc/"$os"/zshrc
 rsync -azPu "$HOME"/.hyper.js hyper/"$os"/hyper.js
-rsync -azPu "$HOME"/.vimrc vim/"$os"/vimrc
+rsync -azPu "$HOME"/.vimrc vimrc/"$os"/vimrc
 rsync -azPu "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
 # bro ok
 
