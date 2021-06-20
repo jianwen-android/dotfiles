@@ -41,43 +41,29 @@ if [[ ! ${#changedFiles[@]} = 0 ]]; then
     echo
 fi
 
-
-while :; do
-    read -p "Show diffs? [Y]es [N]o: " -r
-    echo
-    if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-        while :; do 
-            read -p "Enter index of file (-1 to exit): " -r
-            if [[ "$REPLY" = -1 ]]; then
-                break
-            else
-                file="${changedFiles["$REPLY"]}"
-                    case $file in
-                        "hyper") ydiff ./hyper/"$os"/hyper.js "$HOME"/.hyper.js
-                        ;;
-                        "zshrc") ydiff ./zshrc/"$os"/zshrc "$HOME"/.zshrc
-                        ;;
-                        "p10k") ydiff ./hyper/"$os"/p10k.zsh "$HOME"/.p10k.zsh
-                        ;;
-                        "vimrc") ydiff ./vimrc/"$os"/vimrc "$HOME"/.vimrc
-                        ;;
-                        "sway") ydiff ./sway "$HOME"/.config/sway
-                        ;;
-                        "waybar") ydiff ./waybar "$HOME"/.config/waybar
-                        ;;
-                        "rofi") ydiff ./rofi "$HOME"/.config/rofi
-                        ;;
-                        *) echo "Invalid input (0-...)"
-                    esac
-
-            fi
-        done
-        break
-    elif [[ "$REPLY" =~ ^[Nn]$ ]]; then
+while :; do 
+    read -p "Enter index of file (-1 to exit): " -r
+    if [[ "$REPLY" = -1 ]]; then
         break
     else
-        echo "Invalid option"
-        echo
+        file="${changedFiles["$REPLY"]}"
+            case $file in
+                "hyper") ydiff ./hyper/"$os"/hyper.js "$HOME"/.hyper.js
+                ;;
+                "zshrc") ydiff ./zshrc/"$os"/zshrc "$HOME"/.zshrc
+                ;;
+                "p10k") ydiff ./hyper/"$os"/p10k.zsh "$HOME"/.p10k.zsh
+                ;;
+                "vimrc") ydiff ./vimrc/"$os"/vimrc "$HOME"/.vimrc
+                ;;
+                "sway") ydiff ./sway "$HOME"/.config/sway
+                ;;
+                "waybar") ydiff ./waybar "$HOME"/.config/waybar
+                ;;
+                "rofi") ydiff ./rofi "$HOME"/.config/rofi
+                ;;
+                *) echo "Invalid input (0-...)"
+            esac
     fi
 done
 
