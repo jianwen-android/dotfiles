@@ -165,7 +165,7 @@ input * xkb_numlock enable
 
     #TODO i only use this for hyper...
 
-    exec_always scratchpad: hyper
+    exec_always "scratchpad": hyper
 
     # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad

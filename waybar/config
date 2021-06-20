@@ -9,7 +9,7 @@
   "modules-left": ["wlr/taskbar", "custom/media"],
   "modules-center": ["sway/workspaces",],
   "modules-right": [
-    "temperature",
+    "custom/temperature",
     "custom/seperator",
     "memory",
     "custom/seperator",
@@ -25,12 +25,10 @@
     "custom/seperator",
     "tray", 
     "custom/seperator",
-    "clock", 
-    "custom/seperator",
-    "custom/power"],
+    "clock"
+    ],
 
   // Modules configuration
-
 
   "sway/workspaces": {
     "disable-scroll": false,
@@ -97,20 +95,7 @@
   "clock": {
     "timezone": "Asia/Singapore",
     "format": "{:%I:%M %p}",
-    // "format-alt": "{:%A, %B %d}",
-    "on-click": "~/.local/bin/eww close hub || ~/.local/bin/eww open hub",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    // "format-alt": "{:%Y-%m-%d}"
-  },
-
-  "temperature": {
-    "thermal-zone": 2,
-    "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
-    "critical-threshold": 80,
-    "format-critical": "{temperatureC}° {icon}",
-    "format": "{temperatureC}° {icon}",
-    "interval": 1,
-    "format-icons": ["", "", ""]
   },
 
   "network": {
@@ -134,7 +119,6 @@
       "headset": "",
       "phone": "",
       "portable": "",
-      "car": "",
       "default": ["",""," ","  ","   ","    ","     ","      ","       ","        ","         ","          ","           ","            ","             ","              ","               ","                ","                 ","                  "]
     },
     "on-click": "pavucontrol",
@@ -148,8 +132,8 @@
     // "restart-interval": 3600,
     "exec": "(checkupdates && yay -Qua) | wc -l", // # of updates
     "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "exec gnome-terminal -- yay -Syu && pkill waybar; waybar", // update system
-    "signal": 8,
+	  "on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system
+	  "signal": 8
   },
 
   "disk": {
@@ -184,13 +168,21 @@
 
   "memory": {
 		"interval": 5,
-		"format": "Mem {}%"
+		"format": "MEM  {}%",
+    "on-click": "exec gnome-terminal -- htop",
 	},
+
+  "custom/temperature": {
+      "format": "{} ",
+      "exec": "/home/jianw/.config/waybar/scripts/temperature.sh",
+      "interval": 5,
+      "on-click": "exec gnome-terminal -- htop",
+    },
 
 	"cpu": {
 		"interval": 5,
-		"format": "CPU {usage:2}%",
-    "on-click": "exec gnome-terminal -- htop"
+		"format": "CPU  {usage:2}%",
+    "on-click": "exec gnome-terminal -- htop",
 	},
 
   "custom/fcitx": {
