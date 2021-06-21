@@ -16,7 +16,7 @@ set $term hyper
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /usr/share/backgrounds/user/3122955.png fill
 output VGA-1 resolution 1920x1080 position 1920,0
 
 ### Idle configuration
@@ -223,6 +223,9 @@ exec {
     swaynag -t warning -m 'Restore session?' -b "Yes" sway-session restore
     sway-session save-loop 60
     onedrive --synchronize --skip-size 1000
+
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+    #TODO no idea what this does
 }
 exec_always /usr/bin/light-lockers
 

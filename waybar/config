@@ -111,15 +111,13 @@
     "scroll-step": 1, // %, can be a float
     "format": "{icon}",
     "format-muted": "ﱝ {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
     "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "default": ["",""," ","  ","   ","    ","     ","      ","       ","        ","         ","          ","           ","            ","             ","              ","               ","                ","                 ","                  "]
+      "headphone": "",
+      // "hands-free": "",
+      // "headset": "",
+      //"phone": "",
+      // "portable": "",
+      // "default": ["",""," ","  ","   ","    ","     ","      ","       ","        ","         ","          ","           ","            ","             ","              ","               ","                ","                 ","                  "]
     },
     "on-click": "pavucontrol",
     "on-scroll-up": "pamixer -ui 2 && ~/.config/eww/scripts/volume 2> /dev/null",
@@ -132,7 +130,7 @@
     // "restart-interval": 3600,
     "exec": "(checkupdates && yay -Qua) | wc -l", // # of updates
     "exec-if": "exit 0", // always run; consider advanced run conditions
-	  "on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system
+	  "on-click": "(checkupdates && yay -Qua) | wc -l", // refresh
 	  "signal": 8
   },
 
@@ -141,13 +139,7 @@
     "format": "{free}",
     "path": "/run/media/jianw/",
   },
-
-  "custom/power": {
-    "format": "ﰪ",
-    "on-click": "~/.config/rofi/bin/powermenu open hub",
-    "tooltip": false
-  },
-
+  
   "wlr/taskbar": {
     "format": "{icon}",
     "all-outputs": false,

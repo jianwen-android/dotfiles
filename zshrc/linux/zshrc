@@ -130,6 +130,9 @@ alias pngtowebp="/usr/local/bin/dwebp -o"
 alias zshconfig="code ~/.zshrc"
 alias remove="rm -r"
 
+alias gparted="sudo gparted"
+alias fdisk="sudo fdisk"
+
 alias refreshfont="fc-cache -f -v"
 alias paclock="sudo rm -rf /var/lib/pacman/db.lck"
 
