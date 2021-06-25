@@ -1,5 +1,7 @@
 # Dotfiles
 
+## Files
+
 ### Universal
 
 - [ ] [Dark Reader](darkReader)
@@ -30,3 +32,5 @@
 - [ ] GTK theme
 
 ## Screenshots
+
+### TODO add screenshots
