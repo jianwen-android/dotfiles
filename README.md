@@ -3,7 +3,7 @@
 ### Universal
 
 - [ ] [Dark Reader](darkReader)
-- [x] [Better Discord](betterDiscord)
+- [x] [Better Discord](betterdiscord)
 - [x] [Youtube Enhancer](youtubeEnhancer)
 
 ### MacOS
