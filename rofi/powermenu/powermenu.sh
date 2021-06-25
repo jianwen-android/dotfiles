@@ -15,7 +15,7 @@
 # full_circle     full_square     full_rounded     full_alt
 # row_circle      row_square      row_rounded      row_alt
 
-theme="row_alt"
+theme="column_alt"
 dir="$HOME/.config/rofi/powermenu"
 
 # random colors
@@ -36,7 +36,7 @@ rofi_command="rofi -theme $dir/$theme"
 # Options
 shutdown=""
 reboot=""
-lock=""
+lock="h"
 suspend=""
 logout=""
 
@@ -80,12 +80,12 @@ case $chosen in
         fi
 		;;
 	"$lock")
-		mpc -q pause
+		playerctl pause
 		sway-session save
 		swaylock
 		;;
     "$suspend")
-		mpc -q pause
+		playerctl pause
 		sway-session save
 		systemctl hybrid-sleep
 		;;
