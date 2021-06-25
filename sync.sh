@@ -95,6 +95,7 @@ rsync -azPu "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
 
 if [[ "$os" = linux ]]; then
     rsync -azPu "$HOME"/.config/sway "$HOME"/.config/waybar "$HOME"/.config/rofi .
+    rsync -azPu "$HOME"/.config/BetterDiscord/plugins "$HOME"/.config/BetterDiscord/themes ./betterdiscord
 fi
 
 # Insert copying code here
