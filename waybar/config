@@ -6,16 +6,24 @@
   // "width": 2560, // Waybar width
   // Choose the order of the modules
 
-  "modules-left": ["wlr/taskbar", "custom/media"],
-  "modules-center": ["sway/workspaces",],
+  "modules-left": [
+    "wlr/taskbar", 
+    "custom/seperator",
+    "custom/media",
+    "custom/seperator",
+    "pulseaudio", 
+    ],
+
+  "modules-center": [
+    "sway/workspaces",
+    ],
+
   "modules-right": [
     "custom/temperature",
     "custom/seperator",
     "memory",
     "custom/seperator",
     "cpu",
-    "custom/seperator",
-    "pulseaudio", 
     "custom/seperator",
     "network", 
     "custom/seperator",
@@ -94,7 +102,7 @@
 
   "clock": {
     "timezone": "Asia/Singapore",
-    "format": "{:%I:%M %p}",
+    "format": "{:%a %d %b  %I:%M %p}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
 
@@ -120,8 +128,8 @@
       // "default": ["",""," ","  ","   ","    ","     ","      ","       ","        ","         ","          ","           ","            ","             ","              ","               ","                ","                 ","                  "]
     },
     "on-click": "pavucontrol",
-    "on-scroll-up": "pamixer -ui 2 && ~/.config/eww/scripts/volume 2> /dev/null",
-    "on-scroll-down": "pamixer -ud 2 && ~/.config/eww/scripts/volume 2> /dev/null",
+    // "on-scroll-up": "pamixer -ui 2 && ~/.config/eww/scripts/volume 2> /dev/null",
+    // "on-scroll-down": "pamixer -ud 2 && ~/.config/eww/scripts/volume 2> /dev/null",
   },
 
   "custom/pacman": {
@@ -161,7 +169,7 @@
   "memory": {
 		"interval": 5,
 		"format": "MEM  {}%",
-    "on-click": "exec gnome-terminal -- htop",
+    "on-click": "exec gnome-terminal -- htop --sort-key=PERCENT_MEM",
 	},
 
   "custom/temperature": {
@@ -174,7 +182,7 @@
 	"cpu": {
 		"interval": 5,
 		"format": "CPU  {usage:2}%",
-    "on-click": "exec gnome-terminal -- htop",
+    "on-click": "exec gnome-terminal -- htop --sort-key=PERCENT_CPU",
 	},
 
   "custom/fcitx": {
