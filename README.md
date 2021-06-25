@@ -1,24 +1,24 @@
 # Dotfiles
 
-## Universal
+### Universal
 
 - [ ] [Dark Reader](darkReader)
 - [x] [Better Discord](betterDiscord)
 - [x] [Youtube Enhancer](youtubeEnhancer)
 
-## MacOS
+### MacOS
 
 - [x] [zshrc](zshrc/macos)
 - [x] [p10k](p10k/macos)
 - [x] [Firefox](firefox/macos)
 - [x] [Hyper](hyper/macos)
 
-## Windows
+### Windows
 
 - [x] [Firefox](firefox/windows)
 - [x] [Theme](theme)
 
-## Linux
+### Linux
 
 - [x] [zshrc](zshrc/linux)
 - [x] [p10k](p10k/linux)
@@ -28,3 +28,5 @@
 - [x] [waybar](waybar)
 - [x] [rofi](rofi)
 - [ ] GTK theme
+
+## Screenshots

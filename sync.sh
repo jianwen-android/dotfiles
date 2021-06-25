@@ -28,6 +28,8 @@ if [[ "$os" = linux ]]; then
         changedFiles+=("waybar"); fi
     if [[ $(ydiff "$HOME"/.config/rofi ./rofi) ]]; then
         changedFiles+=("rofi"); fi
+    if [[ $(ydiff "$HOME"/.config/BetterDiscord ./betterdiscord) ]]; then
+        changedFiles+=("betterdiscord"); fi
 fi
 
 echo "You have ${#changedFiles[@]} file(s) changed"
@@ -61,6 +63,8 @@ while :; do
                 "waybar") ydiff ./waybar "$HOME"/.config/waybar
                 ;;
                 "rofi") ydiff ./rofi "$HOME"/.config/rofi
+                ;;
+                "betterdiscord") ydiff ./betterdiscord "$HOME"/.config/BetterDiscord
                 ;;
                 *) echo "Invalid input (0-...)"
             esac
