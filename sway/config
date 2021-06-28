@@ -16,7 +16,7 @@ set $term hyper
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /usr/share/backgrounds/user/3122955.png fill
 output VGA-1 resolution 1920x1080 position 1920,0
 
 ### Idle configuration
@@ -58,10 +58,13 @@ input * xkb_numlock enable
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+space exec ~/.config/rofi/bin/launcher_misc
+    bindsym $mod+space exec ~/.config/rofi/bin/launcher_colorful
 
     # Powermenu
     bindsym $mod+Escape exec ~/.config/rofi/bin/powermenu
+
+    # Screenshot applet #TODO
+    # bindsym $mod+shift+s exec ~/.config/rofi/bin
     
     # Screenshot
     bindsym $mod+shift+s ~/.config/rofi/bin/applet_screenshot
@@ -160,6 +163,10 @@ input * xkb_numlock enable
     # Sway has a "scratchpad", which is a bag of holding for windows.
     # You can send windows there and get them back later.
 
+    #TODO i only use this for hyper...
+
+    exec_always "scratchpad": hyper
+
     # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
 
@@ -208,43 +215,32 @@ bindsym $alt+Shift+Up sticky toggle
 # Read `man 5 sway-bar` for more information about this section.
 
 ### Startup
-# exec_always xwayland enable
+#exec_always xwayland disable
 exec {
-    waybar
     rofi
     fcitx -d -r
     jetbrains
-    sway-session restore
+    swaynag -t warning -m 'Restore session?' -b "Yes" sway-session restore
     sway-session save-loop 60
     onedrive --synchronize --skip-size 1000
+
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+    #TODO no idea what this does
 }
 exec_always /usr/bin/light-lockers
-exec_always "workspace 1: exec /usr/bin/firefox"
 
 for_window [title="^Picture-in-Picture$"] floating enable, move position 1000 675, sticky enable, border none 
 #TODO find the good position
+
+for_window [title="^JetBrains Toolbox$"] floating enable
 
 #for_window [title="(\w|\s)* (A|a)ndroid (\w)*"] floating enable, border none
 # TODO regex
 
 for_window [title="^SM-N950F$"] floating enable, border pixel
 
-#bar {
-#    position top
-#
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-#    status_command while date +'%Y-%m-%d %l:%M:%S %p'; do sleep 1; done
-
-#    colors {
-#        statusline #ffffff
-#        background #323232
-#        inactive_workspace #32323200 #32323200 #5c5c5c
-#    }
-#}
+bar {
+    swaybar_command waybar
+}
 
 include /etc/sway/config.d/*
-
-
-# mod tab should change workspace
-# vice versa mod shift tab

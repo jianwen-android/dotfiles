@@ -6,22 +6,37 @@
   // "width": 2560, // Waybar width
   // Choose the order of the modules
 
-  "modules-left": ["wlr/taskbar", "custom/media"],
-  "modules-center": ["sway/workspaces",],
-  "modules-right": ["memory",
-		                "custom/left-arrow-light",
-                    "custom/left-arrow-dark",
-                    "cpu",
-                    "pulseaudio", 
-                    "network", 
-                    "custom/pacman", 
-                    "custom/recorder", 
-                    "tray", 
-                    "clock", 
-                    "custom/power"],
+  "modules-left": [
+    "wlr/taskbar", 
+    "custom/seperator",
+    "custom/media",
+    "custom/seperator",
+    "pulseaudio", 
+    ],
+
+  "modules-center": [
+    "sway/workspaces",
+    ],
+
+  "modules-right": [
+    "custom/temperature",
+    "custom/seperator",
+    "memory",
+    "custom/seperator",
+    "cpu",
+    "custom/seperator",
+    "network", 
+    "custom/seperator",
+    "custom/pacman", 
+    "custom/seperator",
+    "custom/recorder", 
+    "custom/seperator",
+    "tray", 
+    "custom/seperator",
+    "clock"
+    ],
 
   // Modules configuration
-
 
   "sway/workspaces": {
     "disable-scroll": false,
@@ -87,61 +102,44 @@
 
   "clock": {
     "timezone": "Asia/Singapore",
-    "format": "{:%I:%M %p}",
-    // "format-alt": "{:%A, %B %d}",
-    "on-click": "~/.local/bin/eww close hub || ~/.local/bin/eww open hub",
+    "format": "{:%a %d %b  %I:%M %p}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    // "format-alt": "{:%Y-%m-%d}"
-  },
-
-  "temperature": {
-    "thermal-zone": 2,
-    "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
-    "critical-threshold": 80,
-    "format-critical": "{temperatureC}°C {icon}",
-    "format": "{temperatureC}  {icon}",
-    "interval": 60,
-    "format-icons": ["", "", ""]
   },
 
   "network": {
     //"interface": "wlan0", // (Optional) To force the use of this interface
-    "format-wifi": "﬉  connected",
-    "format-ethernet": "﬉  connected",
+    "format-ethernet": "﬉ connected (LAN)",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
     "interval": 60,
-    "on-click-middle": "exec hyper nmtui"
+    "on-click": "exec nm-connection-editor"
   },
 
   "pulseaudio": {
     "scroll-step": 1, // %, can be a float
     "format": "{icon}",
     "format-muted": "ﱝ {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
     "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["",""," ","  ","   ","    ","     ","      ","       ","        ","         ","          ","           ","            ","             ","              ","               ","                ","                 ","                  "]
+      "headphone": "",
+      // "hands-free": "",
+      // "headset": "",
+      //"phone": "",
+      // "portable": "",
+      // "default": ["",""," ","  ","   ","    ","     ","      ","       ","        ","         ","          ","           ","            ","             ","              ","               ","                ","                 ","                  "]
     },
     "on-click": "pavucontrol",
-    "on-scroll-up": "pamixer -ui 2 && ~/.config/eww/scripts/volume 2> /dev/null",
-    "on-scroll-down": "pamixer -ud 2 && ~/.config/eww/scripts/volume 2> /dev/null",
+    // "on-scroll-up": "pamixer -ui 2 && ~/.config/eww/scripts/volume 2> /dev/null",
+    // "on-scroll-down": "pamixer -ud 2 && ~/.config/eww/scripts/volume 2> /dev/null",
   },
 
   "custom/pacman": {
     "format": "{}  ",
     "interval": 3600, // every hour
     // "restart-interval": 3600,
-    "exec": "checkupdates | wc -l", // # of updates
+    "exec": "(checkupdates && yay -Qua) | wc -l", // # of updates
     "exec-if": "exit 0", // always run; consider advanced run conditions
-    "on-click": "foot yay; pkill -SIGRTMIN+8 waybar", // update system
-    "signal": 8,
+	  "on-click": "(checkupdates && yay -Qua) | wc -l", // refresh
+	  "signal": 8
   },
 
   "disk": {
@@ -149,13 +147,7 @@
     "format": "{free}",
     "path": "/run/media/jianw/",
   },
-
-  "custom/power": {
-    "format": "ﰪ",
-    "on-click": "~/.config/rofi/bin/powermenu open hub",
-    "tooltip": false
-  },
-
+  
   "wlr/taskbar": {
     "format": "{icon}",
     "all-outputs": false,
@@ -168,30 +160,35 @@
     "on-click-right": "minimize",
     "on-click-middle": "close"
   },
-  
-	"custom/left-arrow-dark": {
-		"format": "",
-		"tooltip": false
-	},
-	"custom/left-arrow-light": {
-		"format": "",
-		"tooltip": false
-	},
+
+  "custom/seperator": {
+    "format": " | ",
+    "tooltip": false
+  },
+
   "memory": {
 		"interval": 5,
-		"format": "Mem {}%"
+		"format": "MEM  {}%",
+    "on-click": "exec gnome-terminal -- htop --sort-key=PERCENT_MEM",
 	},
+
+  "custom/temperature": {
+      "format": "{} ",
+      "exec": "/home/jianw/.config/waybar/scripts/temperature.sh",
+      "interval": 5,
+      "on-click": "exec gnome-terminal -- htop",
+    },
+
 	"cpu": {
 		"interval": 5,
-		"format": "CPU {usage:2}%"
-    // "on-click": exec hyper htop
+		"format": "CPU  {usage:2}%",
+    "on-click": "exec gnome-terminal -- htop --sort-key=PERCENT_CPU",
 	},
+
   "custom/fcitx": {
     "format": "<b>  </b>{}",
     "interval": 30,
     "signal": 1,
     "exec": "fcitx -d -r"
   },
-}
-
 }

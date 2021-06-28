@@ -14,8 +14,14 @@ export ZSH="/home/jianw/.oh-my-zsh"
 # Run rofi scripts
 export PATH=$HOME/.config/rofi/bin:$PATH
 
+# Sway-session
+export PATH=$HOME/.sway-session/bin:$PATH
+
 # ydiff options
 export YDIFF_OPTIONS='-s -c auto -w 0 --wrap'
+
+# waybar insists
+export XDG_CURRENT_DESKTOP=Unity
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -127,14 +133,11 @@ alias pngtowebp="/usr/local/bin/dwebp -o"
 alias zshconfig="code ~/.zshrc"
 alias remove="rm -r"
 
+alias gparted="sudo gparted"
+alias fdisk="sudo fdisk"
+
 alias refreshfont="fc-cache -f -v"
 alias paclock="sudo rm -rf /var/lib/pacman/db.lck"
-
-alias install="yay -S"
-alias yeet="yay -R"
-
-alias settings="./Sway-Settings/build/src/sway-settings"
-alias sway-session="$HOME/.sway-session/sway-session"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

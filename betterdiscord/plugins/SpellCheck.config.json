@@ -9,12 +9,12 @@
 		"dictionaryLanguage": "en",
 		"secondaryLanguage": "-"
 	},
+	"general": {
+		"downloadDictionary": false
+	},
 	"owndics": {
 		"en": [
 			"convined"
 		]
-	},
-	"settings": {
-		"downloadDictionary": false
 	}
 }

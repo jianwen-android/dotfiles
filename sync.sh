@@ -1,6 +1,9 @@
 #!/bin/bash
 
+# shellcheck source=test.sh
+# source test.sh
 declare -a changedFiles
+# declare -a noSync
 
 #OS check
 if [ "$(uname -s)" = "Darwin" ]; then
@@ -25,6 +28,8 @@ if [[ "$os" = linux ]]; then
         changedFiles+=("waybar"); fi
     if [[ $(ydiff "$HOME"/.config/rofi ./rofi) ]]; then
         changedFiles+=("rofi"); fi
+    if [[ $(ydiff "$HOME"/.config/BetterDiscord ./betterdiscord) ]]; then
+        changedFiles+=("betterdiscord"); fi
 fi
 
 echo "You have ${#changedFiles[@]} file(s) changed"
@@ -38,46 +43,59 @@ if [[ ! ${#changedFiles[@]} = 0 ]]; then
     echo
 fi
 
-read -p "Show diffs? [Y]es [N]o: " -r
-echo
-if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-    while :; do 
-        read -p "Enter index of file (-1 to exit): " -r
-        if [[ "$REPLY" = -1 ]]; then
-            break
-        else
-            file="${changedFiles["$REPLY"]}"
-                case $file in
-                    "hyper") ydiff ./hyper/"$os"/hyper.js "$HOME"/.hyper.js
-                    ;;
-                    "zshrc") ydiff ./zshrc/"$os"/zshrc "$HOME"/.zshrc
-                    ;;
-                    "p10k") ydiff ./hyper/"$os"/p10k.zsh "$HOME"/.p10k.zsh
-                    ;;
-                    "vimrc") ydiff ./vimrc/"$os"/vimrc "$HOME"/.vimrc
-                    ;;
-                    "sway") ydiff ./sway "$HOME"/.config/sway
-                    ;;
-                    "waybar") ydiff ./waybar "$HOME"/.config/waybar
-                    ;;
-                    "rofi") ydiff ./rofi "$HOME"/.config/rofi
-                    ;;
-                    *) echo "Invalid input (0-...)"
-                esac
-            
-        fi
-    done
-fi
+while :; do 
+    read -p "Enter index of file (-1 to exit): " -r
+    if [[ "$REPLY" = -1 ]]; then
+        break
+    else
+        file="${changedFiles["$REPLY"]}"
+            case $file in
+                "hyper") ydiff ./hyper/"$os"/hyper.js "$HOME"/.hyper.js
+                ;;
+                "zshrc") ydiff ./zshrc/"$os"/zshrc "$HOME"/.zshrc
+                ;;
+                "p10k") ydiff ./hyper/"$os"/p10k.zsh "$HOME"/.p10k.zsh
+                ;;
+                "vimrc") ydiff ./vimrc/"$os"/vimrc "$HOME"/.vimrc
+                ;;
+                "sway") ydiff ./sway "$HOME"/.config/sway
+                ;;
+                "waybar") ydiff ./waybar "$HOME"/.config/waybar
+                ;;
+                "rofi") ydiff ./rofi "$HOME"/.config/rofi
+                ;;
+                "betterdiscord") ydiff ./betterdiscord "$HOME"/.config/BetterDiscord
+                ;;
+                *) echo "Invalid input (0-...)"
+            esac
+    fi
+done
 
+: '
 # Terminal setup
+echo
+echo "Files to exclude?"
+read -p "[N]one [0-...]: " -r
+echo
+for number in $REPLY
+do
+    noSync+=("${changedFiles["$number"]}")
+done
+
+# shellcheck source=test.sh
+subtractArray
+
+'
+
 rsync -azPu "$HOME"/.zshrc zshrc/"$os"/zshrc
 rsync -azPu "$HOME"/.hyper.js hyper/"$os"/hyper.js
-rsync -azPu "$HOME"/.vimrc vim/"$os"/vimrc
+rsync -azPu "$HOME"/.vimrc vimrc/"$os"/vimrc
 rsync -azPu "$HOME"/.p10k.zsh p10k/"$os"/p10k.zsh
 # bro ok
 
 if [[ "$os" = linux ]]; then
     rsync -azPu "$HOME"/.config/sway "$HOME"/.config/waybar "$HOME"/.config/rofi .
+    rsync -azPu "$HOME"/.config/BetterDiscord/plugins "$HOME"/.config/BetterDiscord/themes ./betterdiscord
 fi
 
 # Insert copying code here

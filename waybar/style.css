@@ -4,8 +4,10 @@
   border: none;
   font-size: 11px;
   margin: 2px;
-  font-family: Cascadia Mono, Product Sans, Arial, Helvetica, sans-serif;
+  font-family: Arial, "FontAwesome 5 Free Solid";
+  /* Cascadia Mono, Product Sans, Arial, Helvetica, sans-serif*/
 }
+
 window#waybar {
   padding: 4px;
   animation-name: fadeIn;
