@@ -104,3 +104,8 @@ echo "Copied new files and synced!"
 #     NO: PASS
 # COPY
 # EXIT 1
+
+
+
+#TODO you fat shit
+add spicetify
