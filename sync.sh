@@ -18,7 +18,8 @@ if [[ $(ydiff "$HOME"/.p10k.zsh ./p10k/"$os"/p10k.zsh) ]]; then
     changedFiles+=("p10k.zsh"); fi
 if [[ $(ydiff "$HOME"/.vimrc ./vimrc/"$os"/vimrc) ]]; then
     changedFiles+=("vimrc"); fi
-if [[ $(ydiff "$HOME"/spicetify_data .//"$os"/spicetify)]]
+if [[ $(ydiff "$HOME"/spicetify_data ./"$os"/spicetify) || $(ydiff "$HOME"/.config/spicetify ./"$os"/spicetify) ]]; then
+    changedFiles+=("spicetify"); fi
 
 if [[ "$os" = linux ]]; then
     if [[ $(ydiff "$HOME"/.config/sway ./sway) ]]; then
@@ -65,6 +66,13 @@ while :; do
                 ;;
                 "betterdiscord") ydiff ./betterdiscord "$HOME"/.config/BetterDiscord
                 ;;
+                "spicetify")
+                if [[ "$os" = "macos" ]]; then
+                    ydiff ./spicetify/"$os" "$HOME"/spicetify_data
+                elif [[ "$os" = "linux" ]]; then
+                    ydiff ./spicetify/"$os" "$HOME"/.config/spicetify
+                fi
+                ;;
                 *) echo "Invalid input (0-...)"
             esac
     fi
@@ -82,14 +90,16 @@ do
 done
 
 for file in "${changedFiles[@]}" ; do
-    if  [[ ! $file = "sway" ||  ! $file = "waybar" || ! $file = "rofi" ]]; then
-        if [[ ! "${noSync[@]}" =~ "${file}" ]]; then # if the file is not excluded
+    if [[ ! "${noSync[@]}" =~ "${file}" ]]; then # if the file is not excluded
+        if  [[ $file = "sway" ||  $file = "waybar" || $file = "rofi" ]]; then # if file is sway config
+            echo "Syncing $file"
+        elif [[ $file = "betterdiscord" ]]; then
+            echo "Syncing betterdiscord"
+        elif [[ $file = "spicetify" ]]; then # spicetify
+            echo "Syncing spicetify"
+        else
             echo "Syncing $file"
         fi
-    elif [[ $file = "betterdiscord" ]]; then
-        echo "Syncing betterdiscord"
-    else
-        echo "Syncing $file"
     fi
 done
 
