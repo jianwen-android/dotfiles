@@ -65,6 +65,8 @@ while :; do
                 ;;
                 "betterdiscord") ydiff ./betterdiscord "$HOME"/.config/BetterDiscord
                 ;;
+                "spicetify") 
+                if [[ "$os" = "macos" ]]
                 *) echo "Invalid input (0-...)"
             esac
     fi
