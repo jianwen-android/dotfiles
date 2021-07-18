@@ -1,0 +1,30 @@
+font=futura
+background-color=#2B2A331A
+border-radius=10
+max-icon-size=32
+default-timeout=3000
+
+# text-color=color
+# width=px
+# height=px
+# margin=directional
+# padding=directional
+# border-size=px
+# border-color=color
+
+# progress-color=[over|source] color
+# icons=0|1
+
+# icon-location=position
+# markup=0|1
+# actions=0|1
+# history=0|1
+# format=format
+# text-alignment=left|center|right
+
+# ignore-timeout=0|1
+# group-by=field[,field,...]
+# max-visible=n
+# output=name
+# layer=layer
+# anchor=position
