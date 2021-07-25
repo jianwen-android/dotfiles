@@ -1,15 +1,55 @@
-# Read `man 5 sway` for a complete reference.
-#test
 ### Variables
-#
+
+# Style
+default_border pixel 2
+titlebar_border_thickness 2
+gaps outer 5
+gaps inner 5
+
+## Window decoration
+# class                 border  backgr. text    indicator child_border
+client.focused          #7aa2f7 #414868 #c0caf5 #7dcfff   #7aa2f7
+client.focused_inactive #7aa2f7 #414868 #c0caf5 #7dcfff   #7aa2f7
+client.unfocused        #414868 #24283b #a9b1d6 #7dcfff   #414868
+client.urgent           #e0af68 #e0af68 #1d202f #7dcfff   #e0af68
+
+# Window rules
+for_window [workspace="1"] layout tabbed
+for_window [workspace="4"] layout tabbed
+for_window [workspace="5"] layout tabbed
+for_window [app_id="ncmpcpp"] floating enable, resize set height 500 px, resize set width 1000 px, move position 5 10
+for_window [app_id="cava"] floating enable, resize set height 500 px, resize set width 1000px, move position 895 520
+for_window [app_id="veracrypt"] floating enable
+
+for_window [title="^Picture-in-Picture$"] floating enable, resize set height 400px, resize set width 800px, move position 1120 580, sticky enable, border none
+#TODO find the good position
+for_window [title="^JetBrains Toolbox$"] floating enable, border csd
+for_window [title="^Bitwarden$"] floating enable
+for_window [title="^4K Video Downloader"] floating enable
+for_window [title="Properties$"] floating enable
+#for_window [title="(\w|\s)* (A|a)ndroid (\w)*"] floating enable
+# TODO regex
+for_window [title="^ImageMagick"] floating enable
+
+assign [app_id="msg"] workspace 1
+
+exec whatsdesk --class msg -r nvim ~/.config/sway/config
+exec discord --class msg -r nvim ~/.config/sway/config
+
+assign [app_id="web"] workspace 2
+
+exec firefox --class web -r nvim ~/.config/sway/config
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 set $alt Mod1
-# Home row direction keys, like vim
+
+# Homerow nav keys
 set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
 set $term hyper
 
@@ -17,7 +57,7 @@ set $term hyper
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /usr/share/backgrounds/user/3122955.png fill
-output VGA-1 resolution 1920x1080 position 1920,0
+output VGA-1 resolution 1920x1090 position 1920,0
 
 ### Idle configuration
 exec swayidle -w \
@@ -37,48 +77,68 @@ input type:pointer {
     accel_profile flat
     pointer_accel -0.3
 }
-input * xkb_capslock enable
+# input * xkb_capslock enable
 input * xkb_numlock enable
 
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+set $nag exec swaynagmode
+mode "nag" {
+  bindsym {
+    Ctrl+d    mode "default"
+
+    Ctrl+c    $nag --exit
+    q         $nag --exit
+    Escape    $nag --exit
+
+    Return    $nag --confirm
+
+    Tab       $nag --select prev
+    Shift+Tab $nag --select next
+
+    Left      $nag --select next
+    Right     $nag --select prev
+
+    Up        $nag --select next
+    Down      $nag --select prev
+  }
+}
+
 ### Key bindings
 #
 # Basics:
 #
+    # Screenshot with grim and swappy
+    bindsym print exec ~/.config/rofi/bin/applet_screenshot
+
+    # Show clipboard history
+    bindsym $mod+v exec clipman pick -t rofi
+    
     # Start a terminal
     bindsym $mod+Return exec $term
 
-    # Show screenshot applet when prntscrn
-    bindsym Print exec grim -g "$(slurp -d)" -  && 
-
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+q kill
 
     # Start your launcher
     bindsym $mod+space exec ~/.config/rofi/bin/launcher_colorful
 
+    # File finder
+    #TODO bindsym $alt+space exec sudo rofi -show find -modi find:~/.config/rofi/finder.sh
+
     # Powermenu
-    bindsym $mod+Escape exec ~/.config/wofi/bin/powermenu
+    bindsym $mod+Escape exec ~/.config/rofi/bin/powermenu
 
-    # Screenshot applet #TODO
-    # bindsym $mod+shift+s exec ~/.config/rofi/bin
-    
-    # Screenshot
-    bindsym $mod+shift+s ~/.config/rofi/bin/applet_screenshot
-
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
+    # Draggging and resizing modifier
+    # Works for both tiled and floating windows
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c exec swaymsg reload && swaynag -t warning -m 'Config reloaded!'
+    bindsym $mod+Shift+c exec swaymsg reload && $nag -t nord -m 'Config reloaded!'
 #
+
 # Moving around:
 #
     # Move your focus around
@@ -132,25 +192,25 @@ input * xkb_numlock enable
 
     bindsym $mod+Tab workspace next
     bindsym $mod+shift+Tab workspace prev
+    bindsym $mod+Ctrl+left workspace prev
+    bindsym $mod+Ctrl+right workspace next
 #
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    # bindsym $mod+b splith
+    # bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $mod+w layout toggle stacking tabbed split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    bindsym $alt+shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
     #bindsym $mod+space focus mode_toggle
@@ -165,7 +225,10 @@ input * xkb_numlock enable
 
     #TODO i only use this for hyper...
 
-    exec_always "scratchpad": hyper
+    exec_always {
+        "scratchpad"
+        hyper move scratchpad
+    }
 
     # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
@@ -174,6 +237,33 @@ input * xkb_numlock enable
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 #
+# Swayr:
+exec env RUST_BACKTRACE=1 swayrd > /tmp/swayrd.log 2>&1
+    bindsym $alt+Tab     exec env RUST_BACKTRACE=1 \
+        swayr switch-window >> /tmp/swayr.log 2>&1
+
+    bindsym $mod+Delete exec env RUST_BACKTRACE=1 \
+        swayr quit-window > /tmp/swayr.log 2>&1
+
+    bindsym $mod+$alt exec envb RUST_BACKTRACE=1 \
+        swayr switch-to-urgent-or-lru-window >> /tmp/swayr.log 2>&1
+
+    bindsym $mod+Next exec env RUST_BACKTRACE=1 \
+        swayr next-window >> /tmp/swayr.log 2>&2
+
+    bindsym $mod+Prior exec env RUST_BACKTRACE=1 \
+        swayr prev-window >> /tmp/swayr.log 2>&2
+
+    ##bindsym $mod+Shift+Space exec env RUST_BACKTRACE=1 \
+    ##    swayr switch-workspace-or-window >> /tmp/swayr.log 2>&1
+
+    #bindsym $mod+c exec env RUST_BACKTRACE=1 \
+    #    swayr execute-swaymsg-command >> /tmp/swayr.log 2>&1
+
+    #bindsym $mod+Shift+c exec env RUST_BACKTRACE=1 \
+    #    swayr execute-swayr-command >> /tmp/swayr.log 2>&1
+
+
 # Resizing containers:
 #
 mode "resize" {
@@ -187,14 +277,15 @@ mode "resize" {
     bindsym $right resize grow width 10px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize grow width 10px
+    bindsym Down resize shrink height 10px
+    bindsym Up resize grow height 10px
+    bindsym Right resize shrink width 10px
 
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
 
@@ -215,37 +306,25 @@ bindsym $alt+Shift+Up sticky toggle
 # Read `man 5 sway-bar` for more information about this section.
 
 ### Startup
-#exec_always xwayland disable
+exec_always xwayland enable
 exec {
     rofi
     fcitx -d -r
     jetbrains
     mako
-    swaynag -t warning -m 'Restore session?' -b "Yes" "sway-session restore"
+    $nag -t nord -m 'Restore session?' -b "Yes" "sway-session restore"
     sway-session save-loop 60
     onedrive --synchronize --skip-size 1000
+
+    exec wl-paste -t text --watch clipman store
+    exec wl-paste -p -t text --watch clipman store -P --histpath="~/.local/share/clipman-primary.json" 
+    exec clipman restore
 
     # Enable WebRTC screensharing for Firefox etc..
     /usr/lib/xdg-desktop-portal --verbose -r && /usr/lib/xdg-desktop-portal-wlr
 
-    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-    #TODO no idea what this does
 }
 exec_always /usr/bin/light-lockers
-
-for_window [title="^Picture-in-Picture$"] floating enable, move position 1000 675, sticky enable, border none 
-#TODO find the good position
-
-for_window [title="^JetBrains Toolbox$"] floating enable, border csd
-
-for_window [title="^Bitwarden$"] floating enable
-
-for_window [title="^4K Video Downloader"] floating enable
-
-for_window [title="Properties$"] floating enable
-
-#for_window [title="(\w|\s)* (A|a)ndroid (\w)*"] floating enable
-# TODO regex
 
 for_window [title="^SM-N950F$"] floating enable, border pixel
 

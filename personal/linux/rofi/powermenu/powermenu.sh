@@ -36,7 +36,7 @@ rofi_command="rofi -theme $dir/$theme"
 # Options
 shutdown=""
 reboot=""
-lock="h"
+lock=""
 suspend=""
 logout=""
 

@@ -7,15 +7,14 @@
   // Choose the order of the modules
 
   "modules-left": [
-    "wlr/taskbar", 
-    "custom/seperator",
+    "sway/workspaces",
+    "sway/mode",
     "custom/media",
-    "custom/seperator",
     "pulseaudio", 
     ],
 
   "modules-center": [
-    "sway/workspaces",
+    "sway/window",
     ],
 
   "modules-right": [
@@ -63,6 +62,21 @@
     "icon-size": 15
   },
 
+  "sway/mode": {
+    "format": " {}",
+    "max-length": 50
+  },
+
+  "sway/window": {
+      "format": "{}",
+      "max-length": 50,
+      "rewrite": {
+         "(.*) - Mozilla Firefox": "🌎 $1",
+         "(.*) - vim": " $1",
+         "(.*) - zsh": " [$1]"
+      }
+  },
+
   "custom/media": {
     "format": "{icon}{}",
     "return-type": "json",
@@ -75,7 +89,7 @@
     "on-click": "playerctl play-pause",
     "on-scroll-down": "playerctl next",
     "on-scroll-up": "playerctl previous",
-    "smooth-scrolling-threshold": 5
+    "smooth-scrolling-threshold": 7
   },
 
   "custom/recorder": {
@@ -154,11 +168,6 @@
     "on-click-middle": "close"
   },
 
-  "custom/seperator": {
-    "format": " | ",
-    "tooltip": false
-  },
-
   "memory": {
 		"interval": 5,
 		"format": "MEM  {}%",
@@ -169,7 +178,7 @@
       "format": "{} ",
       "exec": "/home/jianw/.config/waybar/scripts/temperature.sh",
       "interval": 5,
-      "on-click": "exec gnome-terminal -- htop",
+      "on-click": "exec gnome-terminal -- watch sensors",
       "tooltip-format": "sensors"
     },
 
