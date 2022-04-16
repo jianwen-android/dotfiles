@@ -1,5 +1,3 @@
-@import "material.css";
-
 * {
   border: none;
   font-size: 11px;
@@ -12,10 +10,10 @@ window#waybar {
   padding: 4px;
   animation-name: fadeIn;
   animation-duration: 1s;
-  color: @greenish;
+  color: white;
+  background: transparent;
 }
-window#waybar.empty {
-}
+
 #workspaces,
 #tags {
   background-color: transparent;
@@ -29,10 +27,10 @@ window#waybar.empty {
   font-weight: bold;
   margin: 0px;
   padding: 2px 10px 2px 10px;
-  color: @dark;
+  color: #464646;
 }
 #window {
-  color: @greenish;
+  color: #b8b8ac;
   border-radius: 10px;
   padding: 0px 8px 0px 8px;
 }
@@ -47,79 +45,40 @@ window#waybar.empty {
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover,
 #tags button:hover {
-  background-color: @darker;
+  background-color: #3a3a3a;
   box-shadow: inherit;
-  color: @yellow;
+  color: #dcbb8c;
   opacity: 0.5;
 }
 #workspaces button.focused,
 #tags button.focused {
   /* background-color: ; */
   font-weight: bold;
-  color: @yellow;
+  color: #dcbb8c;
 }
 #tags button.focused {
   font-weight: 600;
 }
 #workspaces button.urgent {
-  color: @red;
+  color: #cb7073;
   font-weight: bold;
 }
 #tags button {
   font-weight: 600;
 }
 /* TASKBAR */
-#taskbar {
-  /* margin: 0px; */
-}
 #taskbar button {
   margin: 0px 6px 0px 6px;
   border-radius: 7px;
   padding: 1px 2px 1px 1px;
 }
 #taskbar button.active {
-  background-color: @dark;
-}
-#taskbar button.minimized {
-  /* color: @yellow; */
+  background-color: #464646;
 }
 #taskbar button:hover {
   box-shadow: inherit;
 }
-/* BROWSER BOOKMARKS */
-#custom-name,
-#custom-github,
-#custom-reddit,
-#custom-crunchyroll,
-#custom-youtube,
-#custom-mail,
-#custom-library {
-  background-color: transparent;
-  font-size: 18px;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0px 15px 0px 15px;
-}
-#custom-github {
-  padding-left: 10px;
-  border-radius: 10px 0px 0px 10px;
-  color: @orange;
-}
-#custom-reddit {
-  color: @yellow;
-}
-#custom-crunchyroll {
-  color: @green;
-  font-size: 15px;
-}
-#custom-youtube {
-  color: @red;
-}
-#custom-mail {
-  color: @bright-blue;
-  font-size: 16px;
-  border-radius: 0px 10px 10px 0px;
-}
+
 /* WIDGETS */
 #cpu,
 #custom-pacman,
@@ -135,20 +94,20 @@ window#waybar.empty {
   margin: 2px 0px 2px 0px;
 }
 #disk {
-  color: @purple;
+  color: #8c94ae;
 }
 #memory {
-  color: @orange;
+  color: #d59877;
 }
 #cpu {
-  color: @red;
+  color: #cb7073;
 }
 #network {
   font-weight: 600;
-  color: @green;
+  color: #9da98d;
 }
 #custom-weather {
-  color: @yellow;
+  color: #dcbb8c;
 }
 #custom-weather {
   padding: 0px 8px 0px 8px;
@@ -162,12 +121,12 @@ window#waybar.empty {
   background-color: transparent;
 }
 #custom-media.Playing {
-  color: @yellow;
+  color: #dcbb8c;
   border-radius: 0px;
   font-weight: 500;
 }
 #custom-mpd {
-  color: @purple;
+  color: #8c94ae;
   border-radius: 0px;
   font-weight: 500;
 }
@@ -177,34 +136,34 @@ window#waybar.empty {
   font-weight: 600;
 }
 #pulseaudio {
-  color: @yellow;
+  color: #dcbb8c;
   border-radius: 10px 0px 0px 10px;
 }
 #pulseaudio.muted {
   opacity: 0.5;
 }
 #temperature {
-  color: @blue;
+  color: #434c5e;
 }
 #temperature.critical {
-  color: @yellow;
+  color: #dcbb8c;
 }
 #battery {
-  color: @cyan;
+  color: #a4c3b9;
   padding: 0px 8px 0px 8px;
 }
 #battery.charging {
-  color: @greenish;
+  color: #b8b8ac;
 }
 @keyframes blink {
   to {
     background-color: #eceff4;
-    color: @darker;
+    color: #3a3a3a;
   }
 }
 #battery.critical:not(.charging) {
-  background-color: @red;
-  color: @greenish;
+  background-color: #cb7073;
+  color: #b8b8ac;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-timing-function: linear;
@@ -212,14 +171,14 @@ window#waybar.empty {
   animation-direction: alternate;
 }
 label:focus {
-  background-color: @darker;
+  background-color: #3a3a3a;
 }
 #idle_inhibitor {
   font-size: 18px;
-  color: @greenish;
+  color: #b8b8ac;
 }
 #idle_inhibitor.activated {
-  color: @blue;
+  color: #434c5e;
 }
 #clock,
 #idle_inhibitor,
@@ -233,14 +192,14 @@ label:focus {
   border-radius: 0px 10px 10px 0px;
 }
 #custom-recorder.recording {
-  color: @red;
+  color: #cb7073;
 }
 #tray {
   border-radius: 10px 0px 0px 10px;
-  color: @cyan;
+  color: #a4c3b9;
 }
 #custom-power {
-  color: @greenish;
+  color: #b8b8ac;
   font-size: 17px;
   border-radius: 0px 10px 10px 0px;
 }
