@@ -1,0 +1,50 @@
+# --- Powerlevel10k instant prompt (must stay near the top) ---
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# --- Path to oh-my-zsh installation ---
+export ZSH="$HOME/.oh-my-zsh"
+
+# --- Theme ---
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Confirmed by: setopt dump shows `correctall` active, and alias dump is
+# full of `nocorrect <cmd>` aliases — both only appear when this is "true".
+ENABLE_CORRECTION="true"
+
+# --- Plugins ---
+plugins=(
+  git
+  zsh-syntax-highlighting
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# --- Powerlevel10k config ---
+# If ~/.p10k.zsh also got deleted, run `p10k configure` to regenerate it.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# --- Misc confirmed exports ---
+export EDITOR=vim
+export PAGER=less
+export LESS=-R
+export LSCOLORS=Gxfxcxdxbxegedabagacad
+export YDIFF_OPTIONS='-s -c auto -w 0 --wrap'
+
+# --- Custom aliases ---
+alias pngtowebp='/usr/local/bin/dwebp -o'
+alias zshconfig='vim ~/.zshrc && source ~/.zshrc && cp ~/.zshrc ~/.zshrc.bak'
+alias deploy-check="systemctl status '*-tracker*' 'pwa-*'"
+
+# --- nocorrect ---
+alias bclm='nocorrect bclm'
+alias claude='nocorrect claude'
+alias ebuild='nocorrect ebuild'
+alias gist='nocorrect gist'
+alias heroku='nocorrect heroku'
+alias hpodder='nocorrect hpodder'
+alias link='nocorrect link'
+alias mysql='nocorrect mysql'
+alias ncu='nocorrect ncu'
+alias ydiff='nocorrect ydiff'
