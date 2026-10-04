@@ -36,6 +36,8 @@ export YDIFF_OPTIONS='-s -c auto -w 0 --wrap'
 alias pngtowebp='/usr/local/bin/dwebp -o'
 alias zshconfig='vim ~/.zshrc && source ~/.zshrc && cp ~/.zshrc ~/.zshrc.bak'
 alias deploy-check="systemctl status '*-tracker*' 'pwa-*'"
+alias throttle-check="vcgencmd get_throttled"
+alias wakepc="wakeonlan 9C-6B-00-2F-BB-CB"
 
 # --- nocorrect ---
 alias bclm='nocorrect bclm'
@@ -48,3 +50,4 @@ alias link='nocorrect link'
 alias mysql='nocorrect mysql'
 alias ncu='nocorrect ncu'
 alias ydiff='nocorrect ydiff'
+
