@@ -1,0 +1,9 @@
+Host pi-pwa 
+    HostName 100.80.216.41
+    User jianw
+    SendEnv -LC_*
+    SendEnv -LANG
+    PreferredAuthentications password
+    PubkeyAuthentication no
+    RequestTTY yes
+    RemoteCommand tmux new -A -s persistence 
